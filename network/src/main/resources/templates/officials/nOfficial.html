@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="header :: headerFragment">
+</head>
+<body class="page-header-fixed bg-1">
+	<script>
+		function loadPoints(nationality) {
+			if (nationality == 'Brasil' || nationality == 'NONE'
+					|| nationality == 'Brazil') {
+				document.getElementById('divPoints').style.display = 'none';
+			} else {
+				document.getElementById('divPoints').style.display = 'initial';
+			}
+
+		}
+		
+		$(document).ready(function() {
+			var va = $('#slc_birthPlace').val();
+			loadPoints(va);
+		});
+	</script>
+
+	<div class="modal-shiftfix">
+		<div th:replace="header :: header">&nbsp;</div>
+		<div class="container-fluid main-content">
+
+			<div class="page-title">
+				<h1>
+					<span th:text="#{lbl_officialRecord}"></span>
+				</h1>
+			</div>
+			<form th:action="@{/officials/save}" method="post"
+				th:object="${official}" class="form-horizontal"
+				enctype="multipart/form-data">
+				<input type="hidden" name="id" th:field="*{id}" th:value="*{id}"></input>
+				<input type="hidden" name="userCreatorId"	th:field="*{userCreator}" th:value="*{userCreator}"></input>
+				<input type="hidden" name="profilePic" th:field="*{profilePic}" th:value="*{profilePic}"></input>
+					
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="widget-container fluid-height clearfix">
+							<div class="heading">
+								<i class="fa fa-bars"></i><label for="txt_name"
+									th:text="#{lbl_infos}"></label>
+							</div>
+
+							<div class="widget-content padded">
+
+								<div class="form-group">
+									<label class="control-label col-md-2" for="txt_name"
+										th:text="#{lbl_official}"></label>
+									<div class="col-md-7">
+										<input class="form-control" th:errorclass="has-error"
+											id="txt_name" th:field="*{name}"
+											th:placeholder="#{lbl_official}" type="text" /> <span
+											th:if="${#fields.hasErrors('name')}"
+											class="help-block has-error" th:text="#{error_nameOfficial}"></span>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="control-label col-md-2" for="slc_birthPlace"
+										th:text="#{lbl_birthPlace}"></label>
+									<div class="col-md-7">
+										<select class="select2able" id="slc_birthPlace"
+											onchange="loadPoints(this.value);" th:field="*{placeBirth}">
+											<option th:value="NONE" th:text="#{lbl_chooseBirthPlace}"></option>
+											<option th:each="plcBirth: ${listCountries}"
+												th:value="${plcBirth}" th:field="*{placeBirth}"
+												th:text="${plcBirth.displayCountry}"></option>
+
+										</select>
+
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="control-label col-md-2"
+										th:text="#{lbl_legalIdOfficial}"></label>
+									<div class="col-md-7">
+										<input class="form-control" th:errorclass="has-error"
+											data-inputmask="'mask': ['999.999.999-99']"
+											th:field="*{legalId}" th:placeholder="#{lbl_legalIdOfficial}"
+											type="text" /> <span th:if="${#fields.hasErrors('legalId')}"
+											class="help-block has-error"
+											th:text="*{legalId} ? #{error.legalId.official.unique} : #{error_legalId}"></span>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="control-label col-md-2"
+										th:text="#{lbl_legalId2Official}"></label>
+									<div class="col-md-7">
+										<input class="form-control" th:field="*{legalId2}"
+											th:errorclass="has-error"
+											th:placeholder="#{lbl_legalId2Official}" type="text" /> <span
+											th:if="${#fields.hasErrors('legalId2')}"
+											class="help-block has-error"
+											th:text="*{legalId2}  ? #{error.legalId2.official.unique} : #{error_legalId2}"></span>
+									</div>
+								</div>
+
+
+								<div class="form-group">
+									<label class="control-label col-md-2" th:text="#{lbl_twitter}"></label>
+									<div class="col-md-7">
+										<input class="form-control" th:field="*{twitter}"
+											th:placeholder="#{lbl_twitterAddress}" type="text" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="control-label col-md-2" th:text="#{lbl_facebook}"></label>
+									<div class="col-md-7">
+										<input class="form-control" th:field="*{facebook}"
+											th:placeholder="#{lbl_facebookAddress}" type="text" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="control-label col-md-2"
+										th:text="#{lbl_instagram}"></label>
+									<div class="col-md-7">
+										<input class="form-control" th:field="*{instagram}"
+											th:placeholder="#{lbl_instagramAddress}" type="text" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="control-label col-md-2" for="txt_phone"
+										th:text="#{lbl_phone}"></label>
+									<div class="col-md-7">
+										<input class="form-control" th:errorclass="has-error"
+											data-inputmask="'mask': ['(99) 99999-9999']"
+											th:field="*{phone}" id="txt_phone"
+											th:placeholder="#{lbl_phone}" type="text" /> <span
+											th:if="${#fields.hasErrors('phone')}"
+											class="help-block has-error" th:text="#{error_phone}"></span>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="control-label col-md-2" th:text="#{lbl_email}"></label>
+									<div class="col-md-7">
+										<input class="form-control" th:field="*{email}"
+											th:errorclass="has-error" th:placeholder="#{lbl_email}"
+											type="text" /> <span th:if="${#fields.hasErrors('email')}"
+											class="help-block has-error" th:text="${err}"></span>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="control-label col-md-2" for="txt_adress"
+										th:text="#{lbl_adress}"></label>
+									<div class="col-md-7">
+										<input class="form-control" th:errorclass="has-error"
+											th:field="*{adress}" id="txt_phone"
+											th:placeholder="#{lbl_adress}" type="text" /> <span
+											th:if="${#fields.hasErrors('phone')}"
+											class="help-block has-error" th:text="#{error_phone}"></span>
+									</div>
+								</div>
+
+
+								<div class="form-group">
+									<label class="control-label col-md-2" th:text="#{lbl_city}"></label>
+									<div class="col-md-7">
+										<input class="form-control" th:errorclass="has-error"
+											th:field="*{city}" th:placeholder="#{lbl_city}" type="text" />
+										<span th:if="${#fields.hasErrors('city')}"
+											class="help-block has-error" th:text="#{error_city}"></span>
+
+									</div>
+								</div>
+
+
+								<div class="form-group">
+									<label class="control-label col-md-2" for="slc_bloodType"
+										th:text="#{lbl_bloodType}"></label>
+									<div class="col-md-7">
+										<select class="select2able" id="slc_bloodType"
+											th:field="${official.bloodType}">
+											<option th:value="NA" th:text="#{lbl_chooseBloodType}"></option>
+											<option
+												th:each="bloodType: ${T(br.bfa.manager.Enum.BloodType).values()}"
+												th:value="${bloodType}" th:field="${official.bloodType}"
+												th:text="${bloodType.name}"></option>
+
+										</select>
+
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="control-label col-md-2" th:text="#{lbl_dtBirth}"></label>
+									<div class="col-md-7 input-group date datepicker"
+										data-date-autoclose="true" data-date-format="dd/mm/yyyy">
+										<input class="form-control"
+											data-inputmask="'alias': 'dd/MM/yyyy'"
+											th:field="${official.dtBirth}" id="date" name="date"
+											placeholder="dd/MM/yyyy" type="text" /><span
+											class="input-group-addon"><i class="fa fa-calendar"></i></span>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="widget-container fluid-height clearfix">
+							<div class="heading">
+								<i class="fa fa-comment"></i><label
+									th:text="#{lbl_officialHistoryData}"></label>
+							</div>
+							<div class="widget-content padded">
+								<div class="form-group">
+									<label class="control-label col-md-2"
+										th:text="#{lbl_officialHistory}"></label>
+									<div class="col-md-7">
+										<textarea th:field="${official.history}" class="form-control"
+											rows="3"></textarea>
+									</div>
+								</div>
+
+
+								<div class="form-group">
+									<label class="control-label col-md-2" th:text="#{lbl_dtStart}"></label>
+									<div class="col-md-7 input-group date datepicker"
+										data-date-autoclose="true" data-date-format="dd/mm/yyyy">
+										<input class="form-control"
+											data-inputmask="'alias': 'dd/MM/yyyy'"
+											th:field="${official.dtStart}" id="date" name="date"
+											placeholder="dd/MM/yyyy" type="text" /><span
+											class="input-group-addon"><i class="fa fa-calendar"></i></span>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="control-label col-md-2" th:text="#{lbl_height}"></label>
+									<div class="col-md-7">
+										<input class="form-control" th:field="${official.height}"
+											data-inputmask="'mask': ['9.99']"
+											th:placeholder="#{lbl_height}" type="text" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="control-label col-md-2" th:text="#{lbl_weight}"></label>
+									<div class="col-md-7">
+										<input class="form-control" th:field="*{weight}"
+											data-inputmask="'mask': ['999']"
+											th:placeholder="#{lbl_weight}" type="text" />
+									</div>
+								</div>
+
+
+								<div class="form-group">
+									<label class="control-label col-md-2"
+										th:text="#{lbl_positions}"></label>
+									<div class="col-md-7">
+										<select class="select2able" th:field="*{positions}"
+											multiple="multiple">
+											<th:block
+												th:each="position,status : ${T(br.bfa.manager.Enum.PositionOfficial).values()}">
+												<option th:value="${position}" th:text="${position.name}"></option>
+											</th:block>
+										</select>
+									</div>
+								</div>
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="widget-container">
+							<div class="heading">
+								<i class="fa fa-cloud-upload"></i><label
+									th:text="#{lbl_profilePicUpload}"></label>
+							</div>
+							<div class="widget-content padded">
+								<div class="form-group">
+
+									<div class="form-group">
+										<label class="control-label col-md-2"
+											th:text="#{lbl_imgUpload}"></label>
+										<div class="col-md-4">
+											<div class="fileupload fileupload-new"
+												data-provides="fileupload">
+												<div class="fileupload-new img-thumbnail"
+													style="width: 200px; height: 200px;">
+													<img alt="#{lbl_logo}" height="200" width="200"
+														onerror="this.src='/images/no-text.png'"
+														th:src="*{profilePic}" />
+												</div>
+												<div
+													class="fileupload-preview fileupload-exists img-thumbnail"
+													style="width: 200px; max-height: 150px"></div>
+												<div>
+													<span class="btn btn-default btn-file"><span
+														class="fileupload-new"><label
+															th:text="#{lbl_selectImage}"></label></span><span
+														class="fileupload-exists"><label
+															th:text="#{lbl_change}"></label></span><input name="file"
+														type="file" /></span><a
+														class="btn btn-default fileupload-exists"
+														data-dismiss="fileupload" href="#"><label
+														th:text="#{lbl_remove}"></label></a>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<button type="submit" th:text="#{lbl_save}"
+										class="btn btn-lg btn-primary"></button>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+
+
+			</form>
+		</div>
+	</div>
+</body>
+</html>

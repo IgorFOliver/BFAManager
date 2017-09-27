@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" th:lang="en">
+<head th:replace="header :: headerFragment">
+
+</head>
+<body class="page-header-fixed bg-1">
+
+	<div class="modal-shiftfix">
+		<!-- Navigation -->
+		<div class="navbar navbar-fixed-top scroll-hide"
+			th:include="header :: header">&nbsp;</div>
+		<div class="container-fluid main-content">
+			<!-- Statistics -->
+
+
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="widget-container stats-container">
+
+						<div class="col-md-3">
+							<div class="number">
+								<div class="icon file"></div>
+								Checklist<small></small>
+							</div>
+							<div class="text">
+								<a th:href="@{|/files/regulation|}">Download do arquivo</a>
+							</div>
+						</div>
+
+						<div class="col-md-3">
+							<div class="number">
+								<div class="icon file"></div>
+								Súmula<small></small>
+							</div>
+							<div class="text">
+								<a th:href="@{|/files/sumula|}">Download do arquivo</a>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+	</div>
+</body>
+</html>

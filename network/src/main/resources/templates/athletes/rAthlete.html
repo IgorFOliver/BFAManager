@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="header :: headerFragment">
+</head>
+<body class="page-header-fixed bg-1">
+	<div class="modal-shiftfix">
+		<div th:replace="header :: header">&nbsp;</div>
+		<div class="container-fluid main-content">
+
+			<div class="page-title">
+				<h1>
+					<span th:text="#{lbl_athlete}"></span>
+				</h1>
+			</div>
+			<form th:action="@{/athletes/save}" th:object="${athleteDTO}"
+				method="post" class="form-horizontal">
+				<input type="hidden" name="athletesTeam" id="athletesTeam"
+					th:field="*{athletesTeam}" th:value="athletesTeam"></input>
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="widget-container stats-container">
+							<div class="col-md-6">
+								<div class="number">
+									<div class="icon visitors"></div>
+									<span th:text="${athleteDTO.numberAthletes}"></span>
+								</div>
+								<div class="text">Total de atletas</div>
+							</div>
+
+
+							<div class="col-md-6">
+								<div class="number">
+									<div class="icon visitors"></div>
+									<span th:text="${athleteDTO.athletesContract}"></span>
+								</div>
+								<div class="text">Atletas inscritos</div>
+							</div>
+						</div>
+
+
+
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="widget-container stats-container">
+							<div class="col-md-3">
+								<div class="number">
+									<div class="icon visitors"></div>
+									<span th:text="${athleteDTO.coConference}"></span>
+								</div>
+								<div class="text">Centro-Oeste</div>
+							</div>
+
+							<div class="col-md-3">
+								<div class="number">
+									<div class="icon visitors"></div>
+									<span th:text="${athleteDTO.sConference}"></span>
+								</div>
+								<div class="text">Sul</div>
+							</div>
+
+							<div class="col-md-3">
+								<div class="number">
+									<div class="icon visitors"></div>
+									<span th:text="${athleteDTO.seConference}"></span>
+								</div>
+								<div class="text">Suldeste</div>
+							</div>
+
+							<div class="col-md-3">
+								<div class="number">
+									<div class="icon visitors"></div>
+									<span th:text="${athleteDTO.noConference}"></span>
+								</div>
+								<div class="text">Nordeste</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+
+				<div class="row">
+					<div class="col-md-6">
+						<div class="widget-container fluid-height">
+							<div class="heading">
+								<i class="fa fa-bar-chart-o"></i>Bar Charts
+							</div>
+							<div class="widget-content padded text-center">
+								<div class="graph-container">
+									<div class="caption"></div>
+									<div class="graph" id="team-bar"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<script>
+					$(function() {
+						return buildMorris();
+					});
+					buildMorris = function($re) {
+						var tax_data;
+						var dataAthlete = $("#athletesTeam").val();
+						var result;
+						$.each(dataAthlete, function(k, v) {
+						    result += k + " , " + v + "\n";
+						});   
+						if ($re) {
+							$(".graph").html("");
+						}
+						if ($('#team-bar').length) {
+							return Morris.Bar({
+								element : "team-bar",
+								data : dataAthlete,
+								xkey : "key",
+								ykeys : [ "value" ],
+								labels : [ "key" ],
+								barRatio : 0.4,
+								hideHover : "auto",
+								barColors : [ "#5bc0de" ]
+							});
+						}
+					};
+				</script>
+
+			</form>
+		</div>
+	</div>
+</body>
+</html>

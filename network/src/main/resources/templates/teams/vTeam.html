@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="header :: headerFragment">
+</head>
+<body class="page-header-fixed bg-1">
+	<div class="modal-shiftfix">
+		<div th:replace="header :: header">&nbsp;</div>
+		<div class="container-fluid main-content">
+
+			<div class="page-title">
+				<h1>
+					<span th:text="#{lbl_team}"></span>
+				</h1>
+			</div>
+			<form th:action="@{/teams/save}" th:object="${team}" method="post"
+				class="form-horizontal">
+
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="widget-container fluid-height clearfix">
+							<div class="heading">
+								<i class="fa fa-bars"></i><label th:text="#{lbl_infos}"></label>
+							</div>
+
+							<div class="col-md-9">
+								<div class="widget-content padded">
+									<dl>
+
+										<dt th:text="#{lbl_team}"></dt>
+										<dd th:text="${team.name}"></dd>
+										<dt th:text="#{lbl_legalName}"></dt>
+										<dd th:text="${team.legalName}"></dd>
+										<dt th:text="#{lbl_legalId}"></dt>
+										<dd th:text="${team.legalId}"></dd>
+										<dt th:text="#{lbl_manager}"></dt>
+										<dd th:text="${team.manager}"></dd>
+										<dt th:text="#{lbl_site}"></dt>
+										<dd th:text="${team.site}"></dd>
+										<dt th:text="#{lbl_phone}"></dt>
+										<dd th:text="${team.phone}"></dd>
+										<dt th:text="#{lbl_email}"></dt>
+										<dd th:text="${team.email}"></dd>
+										<dt th:text="#{lbl_city}"></dt>
+										<dd th:text="${team.city}"></dd>
+										<dt th:text="#{lbl_conference}"></dt>
+										<dd th:text="${team.conference.name}"></dd>
+										<dt th:text="#{lbl_dtEstablishment}"></dt>
+										<dd
+											th:text="${team.dtEstablishment} ? ${#dates.format(team.dtEstablishment, 'dd/MM/yyyy')}"></dd>
+
+									</dl>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="widget-content padded">
+									<img alt="#{lbl_logo}" height="200" width="200"
+										onerror="this.src='/images/no-text.png'"
+										th:src="${team.logoPath}" />
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="widget-container fluid-height clearfix">
+							<div class="heading">
+								<i class="fa fa-comment"></i><label
+									th:text="#{lbl_teamHistoryMidia}"></label>
+							</div>
+							<div class="widget-content padded">
+								<dl>
+									<dt th:text="#{lbl_teamHistory}"></dt>
+									<dd th:text="${team.history}"></dd>
+									<dt th:text="#{lbl_teamMidiaGuide}"></dt>
+									<dd th:text="${team.mediaGuide}"></dd>
+								</dl>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

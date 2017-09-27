@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="header :: headerFragment">
+</head>
+<body class="page-header-fixed bg-1">
+	<div class="modal-shiftfix">
+		<div th:replace="header :: header">&nbsp;</div>
+		<div class="container-fluid main-content">
+
+			<div class="page-title">
+				<h1>
+					<span th:text="#{lbl_league}"></span>
+				</h1>
+			</div>
+			<form th:action="@{/leagues/save}" method="post"
+				th:object="${league}" class="form-horizontal"
+				enctype="multipart/form-data">
+				<input type="hidden" name="id" th:field="*{id}" th:value="*{id}"></input>
+				<input type="hidden" name="id" th:field="*{logo}" th:value="*{logo}"></input>
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="widget-container fluid-height clearfix">
+							<div class="heading">
+								<i class="fa fa-bars"></i><label for="txt_name"
+									th:text="#{lbl_infos}"></label>
+							</div>
+
+							<div class="widget-content padded">
+
+								<div class="form-group">
+									<label class="control-label col-md-2" for="txt_name"
+										th:text="#{lbl_league}"></label>
+									<div class="col-md-7">
+										<input class="form-control" th:errorclass="has-error"
+											id="txt_name" th:field="*{name}"
+											th:placeholder="#{lbl_league}" type="text" /> <span
+											th:if="${#fields.hasErrors('name')}"
+											class="help-block has-error" th:text="#{error_nameLeague}"></span>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="control-label col-md-2" th:text="#{lbl_facebook}"></label>
+									<div class="col-md-7">
+										<input class="form-control" th:field="*{facebook}"
+											th:placeholder="#{lbl_facebookAddress}" type="text" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="control-label col-md-2" th:text="#{lbl_twitter}"></label>
+									<div class="col-md-7">
+										<input class="form-control" th:field="*{twitter}"
+											th:placeholder="#{lbl_twitterAddress}" type="text" />
+									</div>
+								</div>
+
+
+								<div class="form-group">
+									<label class="control-label col-md-2"
+										th:text="#{lbl_instagram}"></label>
+									<div class="col-md-7">
+										<input class="form-control" th:field="*{instagram}"
+											th:placeholder="#{lbl_instagramAddress}" type="text" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="control-label col-md-2" th:text="#{lbl_email}"></label>
+									<div class="col-md-7">
+										<input class="form-control" th:field="*{email}"
+											th:errorclass="has-error" th:placeholder="#{lbl_email}"
+											type="text" /> <span th:if="${#fields.hasErrors('email')}"
+											class="help-block has-error" th:text="${err}"></span>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="control-label col-md-2" th:text="#{lbl_site}"></label>
+									<div class="col-md-7">
+										<input class="form-control" th:field="*{site}"
+											th:errorclass="has-error" th:placeholder="#{lbl_siteAddress}"
+											type="text" /> <span th:if="${#fields.hasErrors('site')}"
+											class="help-block has-error" th:text="${err}"></span>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="widget-container">
+							<div class="heading">
+								<i class="fa fa-cloud-upload"></i><label
+									th:text="#{lbl_leagueLogo}"></label>
+							</div>
+							<div class="widget-content padded">
+								<div class="form-group">
+
+									<div class="form-group">
+										<label class="control-label col-md-2"
+											th:text="#{lbl_imgUpload}"></label>
+										<div class="col-md-4">
+											<div class="fileupload fileupload-new"
+												data-provides="fileupload">
+												<div class="fileupload-new img-thumbnail"
+													style="width: 200px; height: 200px;">
+													<img alt="#{lbl_logo}" height="200" width="200"
+														onerror="this.src='/images/no-text.png'" th:src="*{logo}" />
+												</div>
+												<div
+													class="fileupload-preview fileupload-exists img-thumbnail"
+													style="width: 200px; max-height: 150px"></div>
+												<div>
+													<span class="btn btn-default btn-file"><span
+														class="fileupload-new"><label
+															th:text="#{lbl_selectImage}"></label></span><span
+														class="fileupload-exists"><label
+															th:text="#{lbl_change}"></label></span><input name="file"
+														type="file" /></span><a
+														class="btn btn-default fileupload-exists"
+														data-dismiss="fileupload" href="#"><label
+														th:text="#{lbl_remove}"></label></a>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<button type="submit" th:text="#{lbl_save}"
+										class="btn btn-lg btn-primary"></button>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+
+
+			</form>
+		</div>
+	</div>
+</body>
+</html>

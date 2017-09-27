@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="header :: headerFragment">
+</head>
+<body class="page-header-fixed bg-1">
+	<div class="modal-shiftfix">
+		<div th:replace="header :: header">&nbsp;</div>
+		<div class="container-fluid main-content">
+
+			<div class="page-title">
+				<h1>
+					<span th:text="#{lbl_gameTimeline}"></span>
+				</h1>
+			</div>
+			<form th:action="@{/games/save}" method="post" th:object="${game}"
+				class="form-horizontal" enctype="multipart/form-data">
+
+
+				<ul class="timeline animated">
+					<li th:each="game : ${games}">
+						<div class="timeline-time">
+							<strong th:text="${#dates.format(game.dtGame,'dd/MM/yyyy')}"></strong>
+						</div>
+						<div class="timeline-icon">
+							<div class="bg-primary">
+								<img alt="#{lbl_profilePic}"
+									onerror="this.src='/images/no-text.png'"
+									th:src="${game.conference.league.logo}" />
+							</div>
+						</div>
+						<div class="timeline-content">
+
+							<h2 th:text="${game.conference.name}"></h2>
+							<a class="" style="border-radius: 25px;" href=""> <img alt="#{lbl_profilePic}"
+								onerror="this.src='/images/no-text.png'"
+								th:src="${game.homeTeam.logoPath}" /> <strong
+								th:text="${game.homeTeam.name}"></strong></a> vs <a href=""><strong
+								th:text="${game.awayTeam.name}"></strong> <img
+								alt="#{lbl_profilePic}" onerror="this.src='/images/no-text.png'"
+								th:src="${game.awayTeam.logoPath}" />
+							</a>
+						</div>
+					</li>
+				</ul>
+
+
+
+
+			</form>
+		</div>
+	</div>
+</body>
+</html>

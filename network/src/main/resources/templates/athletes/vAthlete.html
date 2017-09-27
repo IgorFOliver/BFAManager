@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="header :: headerFragment">
+</head>
+<body class="page-header-fixed bg-1">
+	<div class="modal-shiftfix">
+		<div th:replace="header :: header">&nbsp;</div>
+		<div class="container-fluid main-content">
+
+			<div class="page-title">
+				<h1>
+					<span th:text="#{lbl_athlete}"></span>
+				</h1>
+			</div>
+			<form th:action="@{/athletes/save}" th:object="${athlete}" method="post" class="form-horizontal">
+			
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="widget-container fluid-height clearfix">
+							<div class="heading">
+								<i class="fa fa-bars"></i><label th:text="#{lbl_infos}"></label>
+							</div>
+
+							<div class="col-md-9">
+								<div class="widget-content padded">
+									<dl>
+
+										<dt th:text="#{lbl_athlete}"></dt>
+										<dd th:text="${athlete.name}"></dd>
+										<dt th:text="#{lbl_legalIdAthlete}"></dt>
+										<dd th:text="${athlete.legalId}"></dd>
+										<dt th:text="#{lbl_legalId2Athlete}"></dt>
+										<dd th:text="${athlete.legalId2}"></dd>
+										<dt th:text="#{lbl_phone}"></dt>
+										<dd th:text="${athlete.phone}"></dd>
+										<dt th:text="#{lbl_email}"></dt>
+										<dd th:text="${athlete.email}"></dd>
+										<dt th:text="#{lbl_twitter}"></dt>
+										<dd th:text="${athlete.twitter}"></dd>
+										<dt th:text="#{lbl_facebook}"></dt>
+										<dd th:text="${athlete.facebook}"></dd>
+										<dt th:text="#{lbl_instagram}"></dt>
+										<dd th:text="${athlete.instagram}"></dd>
+										<dt th:text="#{lbl_city}"></dt>
+										<dd th:text="${athlete.city}"></dd>
+										<dt th:text="#{lbl_birthPlace}"></dt>
+										<dd th:text="${athlete.placeBirth == 'NA'} ? #{lbl_notEspecified}: ${athlete.placeBirth.displayCountry}"></dd>
+										<dt th:text="#{lbl_dtBirth}"></dt>
+										<dd th:text="${athlete.dtBirth} ? ${#dates.format(athlete.dtBirth, 'dd/MM/yyyy')}"></dd>
+										<dt th:text="#{lbl_bloodType}"></dt>
+										<dd th:text="${athlete.bloodType} ? ${athlete.bloodType.name} : ''"></dd>
+
+									</dl>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="widget-content padded">
+									<img alt="#{lbl_profilePic}" height="200" width="200" onerror="this.src='/images/no-text.png'" th:src="${athlete.profilePic}"/>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="widget-container fluid-height clearfix">
+							<div class="heading">
+								<i class="fa fa-comment"></i><label
+									th:text="#{lbl_athleteHistoryCombine}"></label>
+							</div>
+							<div class="widget-content padded">
+								<dl>
+									<dt th:text="#{lbl_athleteHistory}"></dt>
+									<dd th:text="${athlete.history}"></dd>
+									<dt th:text="#{lbl_40ydash}"></dt>
+									<dd th:text="${athlete.dash}"></dd>
+									<dt th:text="#{lbl_shuttle}"></dt>
+									<dd th:text="${athlete.shuttle}"></dd>
+									<dt th:text="#{lbl_3Cone}"></dt>
+									<dd th:text="${athlete.cone}"></dd>
+									<dt th:text="#{lbl_verticalJump}"></dt>
+									<dd th:text="${athlete.verticalJump}"></dd>
+									<dt th:text="#{lbl_broadJump}"></dt>
+									<dd th:text="${athlete.broadJump}"></dd>
+									<dt th:text="#{lbl_positions}"></dt>
+									<dd th:text="${athlete.positions}"></dd>
+								</dl>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

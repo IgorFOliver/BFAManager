@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="header :: headerFragment">
+</head>
+<body class="page-header-fixed bg-1">
+	<div class="modal-shiftfix">
+		<div th:replace="header :: header">&nbsp;</div>
+		<div class="container-fluid main-content">
+
+			<div class="page-title">
+				<h1>
+					<span th:text="#{lbl_league}"></span>
+				</h1>
+			</div>
+			<form th:action="@{/leagues/save}" th:object="${league}" method="post" class="form-horizontal">
+			
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="widget-container fluid-height clearfix">
+							<div class="heading">
+								<i class="fa fa-bars"></i><label th:text="#{lbl_infos}"></label>
+							</div>
+
+							<div class="col-md-9">
+								<div class="widget-content padded">
+									<dl>
+
+										<dt th:text="#{lbl_league}"></dt>
+										<dd th:text="${league.name}"></dd>
+										<dt th:text="#{lbl_email}"></dt>
+										<dd th:text="${league.email}"></dd>
+										<dt th:text="#{lbl_site}"></dt>
+										<dd th:text="${league.site}"></dd>
+										<dt th:text="#{lbl_twitter}"></dt>
+										<dd th:text="${league.twitter}"></dd>
+										<dt th:text="#{lbl_facebook}"></dt>
+										<dd th:text="${league.facebook}"></dd>
+										<dt th:text="#{lbl_instagram}"></dt>
+										<dd th:text="${league.instagram}"></dd>
+									</dl>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="widget-content padded">
+									<img alt="#{lbl_logoLeague}" height="200" width="200" onerror="this.src='/images/no-text.png'" th:src="${league.logo}"/>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+</body>
+</html>

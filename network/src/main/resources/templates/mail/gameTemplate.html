@@ -1,0 +1,70 @@
+<!-- utf-8 works for most cases -->
+<!-- Forcing initial-scale shouldn't be necessary -->
+<!-- Use the latest (edge) version of IE rendering engine -->
+<!-- Disable auto-scale in iOS 10 Mail entirely -->
+<!-- The title tag shows in email notifications, like Android 4.4. -->
+<!-- Web Font / @font-face : BEGIN -->
+<!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+<!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+<!-- [if mso]>
+        <style>
+            * {
+                font-family: sans-serif !important;
+            }
+        </style>
+    <![endif]-->
+<!-- [if gte mso 9]>
+    <xml>
+      <o:OfficeDocumentSettings>
+        <o:AllowPNG/>
+        <o:PixelsPerInch>96</o:PixelsPerInch>
+     </o:OfficeDocumentSettings>
+    </xml>
+    <![endif]-->
+<center style="width: 100%; text-align: left;">
+	<table border="0" cellspacing="0" cellpadding="0" align="center">
+		<tbody>
+			<tr>
+				<td width="600px" align="center" bgcolor="#DDDDDD"><img class="g-img" 
+					style="width: 200px; height: auto; align: center; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;"
+					src="http://i.imgur.com/8k18lU1.png" alt="alt_text" height=""
+					align="center" border="0" /></td>
+			</tr>
+			<tr>
+				<td
+					style="padding: 40px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+					<h1
+						style="margin: 0 0 10px 0; font-family: sans-serif; font-size: 24px; line-height: 27px; color: #333333; font-weight: normal;">
+						<span th:text="#{lbl_passwordRecoverRequest}"></span>
+					</h1>
+					<span th:text="#{txt_passwordRecover}"></span>
+				</td>
+			</tr>
+			<tr>
+				<td><span th:text="#{lbl_username}"></span>:&nbsp;
+					<span th:text="${username}"></span></td>
+			</tr>
+			<tr>
+				<td><span th:text="#{lbl_password}"></span>:&nbsp;
+					<span th:text="${password}" ></span></td>
+					<br/>
+					<br/>
+			</tr>
+			<tr>
+			
+				<td class="button-td"
+					style="border-radius: 3px; text-align: center;"><a
+					class="button-a"
+					style="font-family: sans-serif; font-size: 20px; color:#fff; height:40px; background-color: #428bca; border-color: #357ebd; line-height: 1.1; text-align: center; vertical-align: middle; text-decoration: none; display: block; border-radius: 3px; font-weight: bold;"
+					href="http://network.ligabfa.com.br">
+						&nbsp;&nbsp;&nbsp;&nbsp;Acesse o Sistema&nbsp;&nbsp;&nbsp;&nbsp; </a></td>
+			</tr>
+		</tbody>
+	</table>
+	<!-- Email Body : END -->
+	<!-- [if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+</center>

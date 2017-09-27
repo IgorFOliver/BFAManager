@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="header :: headerFragment">
+</head>
+<body class="page-header-fixed bg-1">
+	<div class="modal-shiftfix">
+		<div th:replace="header :: header">&nbsp;</div>
+		<div class="container-fluid main-content">
+			<div th:if="${not #lists.isEmpty(persons)}">
+				<h2>Person List</h2>
+				<table class="table table-striped">
+					<tr>
+						<th>Id</th>
+						<th>Name</th>
+					</tr>
+					<tr th:each="person : ${persons}">
+						<td th:text="${person.id}"><a href="/person/${person.id}">Id</a></td>
+						<td th:text="${person.name}">descirption</td>
+						<td><a th:href="${ '/person/' + person.id}">View</a></td>
+						<td><a th:href="${'/person/edit/' + person.id}">Edit</a></td>
+						<td><a th:href="${'/person/delete/' + person.id}">Delete</a></td>
+					</tr>
+				</table>
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

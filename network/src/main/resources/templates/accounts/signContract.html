@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="header :: headerFragment">
+</head>
+<body class="page-header-fixed bg-1">
+	<div class="modal-shiftfix">
+		<div th:replace="header :: header">&nbsp;</div>
+		<div class="container-fluid main-content">
+
+			<div class="page-title">
+				<h2>
+					<label for="field1" th:text="#{lbl_signContract}"></label>
+				</h2>
+			</div>
+
+			<form th:action="@{/athletes/signContract}" th:object="${athlete}"
+				method="post" id="formAccount" class="form-horizontal">
+				<input type="hidden" name="id" th:field="${athlete.id}"
+					th:value="${athlete.id}"></input>
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="widget-container fluid-height clearfix">
+							<div class="heading">
+								<i class="fa fa-book"></i><label for="field1"
+									th:text="#{lbl_accountTerms}"></label>
+							</div>
+							<div class="widget-content padded">
+								<p class="lead">
+									Eu, <strong><span th:text="${athlete.name}"></span></strong>, atleta da equipe <strong><span th:text="${athlete.team.name}"></span></strong>,
+									portador do RG n.o <strong><span
+										th:text="${athlete.legalId2}"></span></strong>, inscrito no CPF sob o
+									n.o <strong><span th:text="${athlete.legalId}"></span></strong>, declaro estar apto a participar da  BFA
+									&ndash; Brasil Futebol Americano, organizado pela Brasil Futebol Americano e de
+									Bandeira do Brasil, doravante denominada de BFA, &ndash;
+									 e
+									asseguro estar em perfeitas condi&ccedil;&otilde;es de
+									sa&uacute;de, f&iacute;sicas e psicol&oacute;gicas, n&atilde;o
+									apresentando cardiopatias gen&eacute;ticas, cong&ecirc;nitas ou
+									infecciosas, viroses, ou qualquer outra doen&ccedil;a,
+									patologia ou dist&uacute;rbio de sa&uacute;de que implique em
+									qualquer tipo de impedimento ou restri&ccedil;&atilde;o
+									&agrave; pr&aacute;tica de atividades f&iacute;sicas e
+									esportivas, tendo realizado, por minha pr&oacute;pria conta e
+									risco, avalia&ccedil;&atilde;o cl&iacute;nica que atesta as
+									condi&ccedil;&otilde;es apresentadas.<br/><br/> Declaro ainda, que
+									participo do Campeonato Brasileiro de Futebol Americano por
+									livre e espont&acirc;nea vontade, ciente de que o Futebol
+									Americano &eacute; um esporte de contato f&iacute;sico, podendo
+									ocasionar a seus praticantes, les&otilde;es das mais variadas
+									modalidades.<br/><br/> Assumo todos os riscos inerentes &agrave;
+									pr&aacute;tica deste esporte e eximo a BFA, &ndash; bem
+									como equipes a ela filiadas, todos seus patrocinadores,
+									apoiadores, representantes ou diretores de toda a
+									responsabilidade, inclusive legal, por qualquer les&atilde;o
+									que eu possa vir a sofrer.<br/><br/> Concedo tamb&eacute;m &agrave; BFA
+									&ndash; Brasil Futebol Americano, de forma irrevog&aacute;vel e
+									irretrat&aacute;vel, o direito de usar meu nome, voz, imagem,
+									material biogr&aacute;fico, declara&ccedil;&otilde;es,
+									grava&ccedil;&otilde;es, entrevistas, bem como de usar sons
+									e/ou imagens do evento, seja durante as
+									competi&ccedil;&otilde;es, seja durante os aquecimentos, os
+									treinamentos a hospedagem, o transporte ou
+									alimenta&ccedil;&atilde;o, sem limita&ccedil;&atilde;o de tempo
+									ou de n&uacute;mero de vezes, atrav&eacute;s de r&aacute;dio,
+									TV, m&iacute;dia impressa, Internet, ou quaisquer meios de
+									comunica&ccedil;&atilde;o, semelhantes, renunciando, desde
+									j&aacute;, a qualquer remunera&ccedil;&atilde;o.<br/><br/></p>
+							</div>
+
+							<div class="col-md-12 text-center">
+								<button type="submit" th:text="#{lbl_readAgree}"
+									class="btn btn-lg btn-primary"></button>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="header :: headerFragment">
+</head>
+<body class="page-header-fixed bg-1">
+
+
+	<div class="modal-shiftfix">
+		<div th:replace="header :: header">&nbsp;</div>
+		<div class="container-fluid main-content">
+
+			<div class="page-title">
+				<h1>
+					<span th:text="#{lbl_importAthletes}"></span>
+				</h1>
+			</div>
+			<form th:action="@{/athletes/import}" method="post"
+				th:object="${athleteForm}" class="form-horizontal"
+				enctype="multipart/form-data">
+
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="widget-container fluid-height clearfix">
+
+							<div th:if="${#fields.hasErrors('*')}"
+								class="alert alert-danger">
+								<button class="close" data-dismiss="alert" type="button">&times;</button>
+								<p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+							</div>
+
+							<div class="heading">
+								<i class="fa fa-bars"></i><label for="field1"
+									th:text="#{lbl_infoImportAthletes}"></label>
+							</div>
+
+							<div class="form-group">
+								<label class="control-label col-md-2" for="slc_teams"
+									th:text="#{lbl_teams}"></label>
+								<div class="col-md-7">
+									<select class="select2able" id="slc_teams"
+										th:field="*{team.id}">
+										<option th:value="0" th:text="#{lbl_teams}"></option>
+										<option th:each="team : ${listTeams}"
+											th:value="${team.id}"
+											th:text="${team.name}"></option>
+
+									</select>
+
+								</div>
+							</div>
+
+
+							<div class="form-group">
+								<label class="control-label col-md-2"
+									th:text="#{lbl_fileAthleteXls}"></label>
+								<div class="col-md-7">
+
+
+									<div class="fileupload fileupload-new"
+										data-provides="fileupload">
+										<div class="input-group">
+											<div class="form-control">
+												<i class="fa fa-file fileupload-exists"></i><span
+													class="fileupload-preview"></span>
+											</div>
+											<div class="input-group-btn">
+												<span class="btn btn-success fileinput-button"><i
+													class="fa fa-plus"></i><span>Add files...</span><input
+													id="upload_file"
+													accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+													name="file" type="file" /></span>
+												<button class="btn btn-primary start" name="action"
+													value="import" type="submit">
+													<i class="fa fa-upload"></i><span>Start upload</span>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+
+							<div class="widget-content padded clearfix">
+
+								<script type="text/javascript">
+									$(document).ready(function() {
+										$('#fullTable').DataTable({
+											iDisplayLength : -1
+											 columnDefs: [ {
+										            orderable: false,
+										            className: 'select-checkbox',
+										            targets:   0
+										        } ],
+										        select: {
+										            style:    'os',
+										            selector: 'td:first-child'
+										        },
+										        order: [[ 1, 'asc' ]]
+										});
+									});
+								</script>
+
+								<table class="table table-striped table-bordered" id="fullTable">
+									<thead>
+										<tr>
+											<th><label th:text="#{lbl_status}"></label></th>
+											<th><label th:text="#{lbl_athleteName}"></label></th>
+											<th><label th:text="#{lbl_legalIdAthlete}"></label></th>
+											<th><label th:text="#{lbl_legalId2Athlete}"></label></th>
+											<th><label th:text="#{lbl_email}"></label></th>
+											<th><label th:text="#{lbl_phone}"></label></th>
+											<th><label th:text="#{lbl_adress}"></label></th>
+											<th><label th:text="#{lbl_height}"></label></th>
+											<th><label th:text="#{lbl_weight}"></label></th>
+											<th><label th:text="#{lbl_positions}"></label></th>
+											<th><label th:text="#{lbl_dtStart}"></label></th>
+											<th><label th:text="#{lbl_bloodType}"></label></th>
+											<th><label th:text="#{lbl_dtBirth}"></label></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="athlete,status : ${athleteForm.athletes}">
+										
+										<td><input type="checkbox" class="form-control" id="checkboxAthlete" 
+												th:field="${athleteForm.athletes[__${status.index}__].status}" /><p th:text="#{lbl_approved}" th:if="${athleteForm.athletes[__${status.index}__].status}" class="label label-success"></p>
+												<p th:if="${athleteForm.athletes[__${status.index}__].status} == false" th:text="#{lbl_notApproved}" class="label label-danger"></p></td>
+										
+											<td><input type="text" class="form-control" th:classappend="${athlete.status} ? has-success : error"
+												th:field="${athleteForm.athletes[__${status.index}__].name}" /></td>
+
+											<td><input type="text" class="form-control" th:classappend="${athlete.status} ? success : error"
+												th:field="${athleteForm.athletes[__${status.index}__].legalId}" data-inputmask="'mask': ['999.999.999-99']"/></td>
+
+											<td><input type="text" class="form-control"  th:classappend="${athlete.status} ? success : error"
+												th:field="${athleteForm.athletes[__${status.index}__].legalId2}"/></td>
+
+											<td><input type="text" class="form-control"  th:classappend="${athlete.status} ? success : error"
+												th:field="${athleteForm.athletes[__${status.index}__].email}"/></td>
+
+											<td><input type="text" class="form-control" 
+												th:field="${athleteForm.athletes[__${status.index}__].phone}"/></td>
+
+											<td><input type="text" class="form-control"
+												th:field="${athleteForm.athletes[__${status.index}__].adress}"/></td>
+
+											<td><input type="text" class="form-control"
+												th:field="${athleteForm.athletes[__${status.index}__].height}" /></td>
+
+											<td><input type="text" class="form-control"
+												th:field="${athleteForm.athletes[__${status.index}__].weight}"/></td>
+
+											<td><input type="text" class="form-control"
+												th:field="${athleteForm.athletes[__${status.index}__].positions}"/></td>
+
+											<td><input type="text" class="form-control"
+												th:field="${athleteForm.athletes[__${status.index}__].dtStart}"/></td>
+
+											<td><input type="text" class="form-control"
+												th:field="${athleteForm.athletes[__${status.index}__].bloodType}" /></td>
+
+											<td><input type="text" class="form-control"
+												th:field="${athleteForm.athletes[__${status.index}__].dtBirth}"/></td>
+
+										</tr>
+
+									</tbody>
+								</table>
+
+							</div>
+							<div class="form-group">
+								<div class="col-md-2">
+									<button type="submit" name="action" value="save"
+										th:text="#{lbl_saveAll}" class="btn btn-lg btn-primary"></button>
+
+								</div>
+							</div>
+
+
+						</div>
+					</div>
+				</div>
+
+			</form>
+
+
+		</div>
+	</div>
+</body>
+</html>

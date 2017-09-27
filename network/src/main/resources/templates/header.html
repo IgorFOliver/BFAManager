@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:fragment="headerFragment">
+<title>BFA - Network</title>
+
+<link rel="icon" type="image/png" href="images/favicon.ico" />
+
+<link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700"
+	media="all" rel="stylesheet" type="text/css" />
+
+<link href="stylesheets/bootstrap.min.css"
+	th:href="@{/stylesheets/bootstrap.min.css}" media="all"
+	rel="stylesheet" type="text/css" />
+
+<link href="stylesheets/font-awesome.min.css" media="all"
+	rel="stylesheet" th:href="@{/stylesheets/font-awesome.min.css}"
+	type="text/css" />
+<link href="stylesheets/se7en-font.css"
+	th:href="@{/stylesheets/se7en-font.css}" media="all" rel="stylesheet"
+	type="text/css" />
+<link href="stylesheets/isotope.css"
+	th:href="@{/stylesheets/isotope.css}" media="all" rel="stylesheet"
+	type="text/css" />
+<link href="stylesheets/jquery.fancybox.css"
+	th:href="@{/stylesheets/jquery.fancybox.css}" media="all"
+	rel="stylesheet" type="text/css" />
+<link href="stylesheets/fullcalendar.css"
+	th:href="@{/stylesheets/fullcalendar.css}" media="all" rel="stylesheet"
+	type="text/css" />
+<link href="stylesheets/wizard.css" th:href="@{/stylesheets/wizard.css}"
+	media="all" rel="stylesheet" type="text/css" />
+<link href="stylesheets/select2.css"
+	th:href="@{/stylesheets/select2.css}" media="all" rel="stylesheet"
+	type="text/css" />
+<link href="stylesheets/morris.css" th:href="@{/stylesheets/morris.css}"
+	media="all" rel="stylesheet" type="text/css" />
+<link href="stylesheets/datatables.css"
+	th:href="@{/stylesheets/datatables.css}" media="all" rel="stylesheet"
+	type="text/css" />
+<link href="stylesheets/datepicker.css"
+	th:href="@{/stylesheets/datepicker.css}" media="all" rel="stylesheet"
+	type="text/css" />
+<link href="stylesheets/timepicker.css"
+	th:href="@{/stylesheets/timepicker.css}" media="all" rel="stylesheet"
+	type="text/css" />
+<link href="stylesheets/colorpicker.css"
+	th:href="@{/stylesheets/colorpicker.css}" media="all" rel="stylesheet"
+	type="text/css" />
+<link href="stylesheets/bootstrap-switch.css"
+	th:href="@{/stylesheets/bootstrap-switch.css}" media="all"
+	rel="stylesheet" type="text/css" />
+
+<link href="stylesheets/bootstrap-editable.css"
+	th:href="@{/stylesheets/bootstrap-editable.css}" media="all"
+	rel="stylesheet" type="text/css" />
+
+<link href="stylesheets/daterange-picker.css"
+	th:href="@{/stylesheets/daterange-picker.css}" media="all"
+	rel="stylesheet" type="text/css" />
+
+<link href="stylesheets/typeahead.css"
+	th:href="@{/stylesheets/typeahead.css}" media="all" rel="stylesheet"
+	type="text/css" />
+<link href="stylesheets/summernote.css"
+	th:href="@{/stylesheets/summernote.css}" media="all" rel="stylesheet"
+	type="text/css" />
+<link href="stylesheets/ladda-themeless.min.css"
+	th:href="@{/stylesheets/ladda-themeless.min.css}" media="all"
+	rel="stylesheet" type="text/css" />
+<link href="stylesheets/social-buttons.css"
+	th:href="@{/stylesheets/social-buttons.css}" media="all"
+	rel="stylesheet" type="text/css" />
+<link href="stylesheets/pygments.css"
+	th:href="@{/stylesheets/pygments.css}" media="all" rel="stylesheet"
+	type="text/css" />
+<link href="stylesheets/style.css" th:href="@{/stylesheets/style.css}"
+	media="all" rel="stylesheet" type="text/css" />
+<link href="stylesheets/color/green.css"
+	th:href="@{/stylesheets/color/green.css}" media="all"
+	rel="alternate stylesheet" title="green-theme" type="text/css" />
+
+<link href="stylesheets/color/orange.css"
+	th:href="@{/stylesheets/color/orange.css}" media="all"
+	rel="alternate stylesheet" title="orange-theme" type="text/css" />
+<link href="stylesheets/color/magenta.css"
+	th:href="@{/stylesheets/color/magenta.css}" media="all"
+	rel="alternate stylesheet" title="magenta-theme" type="text/css" />
+<link href="stylesheets/color/gray.css" media="all"
+	th:href="@{/stylesheets/color/gray.css}" rel="alternate stylesheet"
+	title="gray-theme" type="text/css" />
+<link href="stylesheets/jquery.fileupload-ui.css" media="screen"
+	th:href="@{/stylesheets/jquery.fileupload-ui.css}" rel="stylesheet"
+	type="text/css" />
+<link href="stylesheets/dropzone.css"
+	th:href="@{/stylesheets/dropzone.css}" media="screen" rel="stylesheet"
+	type="text/css" />
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"
+	type="text/javascript"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"
+	type="text/javascript"></script>
+
+<script src="/javascripts/bootstrap.min.js"
+	th:href="@{/javascripts/bootstrap.min.js}" type="text/javascript"></script>
+<script src="/javascripts/raphael.min.js"
+	th:href="@{/javascripts/raphael.min.js}" type="text/javascript"></script>
+<script src="/javascripts/selectivizr-min.js"
+	th:href="@{/javascripts/selectivizr-min.js}" type="text/javascript"></script>
+<script src="/javascripts/jquery.mousewheel.js"
+	th:href="@{/javascripts/jquery.mousewheel.js}" type="text/javascript"></script>
+<script src="/javascripts/jquery.vmap.min.js"
+	th:href="@{/javascripts/jquery.vmap.min.js}" type="text/javascript"></script>
+<script src="/javascripts/jquery.vmap.sampledata.js"
+	th:href="@{/javascripts/jquery.vmap.sampledata.js}"
+	type="text/javascript"></script>
+<script src="/javascripts/jquery.vmap.world.js"
+	th:href="@{/javascripts/jquery.vmap.world.js}" type="text/javascript"></script>
+<script src="/javascripts/jquery.bootstrap.wizard.js"
+	th:href="@{/javascripts/jquery.boostrap.wizard.js}"
+	type="text/javascript"></script>
+<script src="/javascripts/fullcalendar.min.js"
+	th:href="@{/javascripts/fullcalendar.min.js}" type="text/javascript"></script>
+<script src="/javascripts/gcal.js" th:href="@{/javascripts/gcal.js}"
+	type="text/javascript"></script>
+<script src="/javascripts/jquery.dataTables.min.js"
+	th:href="@{/javascripts/jquery.dataTables.min.js}"
+	type="text/javascript"></script>
+<script src="/javascripts/datatable-editable.js"
+	th:href="@{/javascripts/datatable-editable.js}" type="text/javascript"></script>
+<script src="/javascripts/jquery.easy-pie-chart.js"
+	th:href="@{/javascripts/jquery.easy-pie-chart.js}"
+	type="text/javascript"></script>
+<script src="/javascripts/excanvas.min.js"
+	th:href="@{/javascripts/excanvas.min.js}" type="text/javascript"></script>
+<script src="/javascripts/jquery.isotope.min.js"
+	th:href="@{/javascripts/jquery.isotope.min.js}" type="text/javascript"></script>
+<script src="/javascripts/isotope_extras.js"
+	th:href="@{/javascripts/isotope_extras.js}" type="text/javascript"></script>
+<script src="/javascripts/modernizr.custom.js"
+	th:href="@{/javascripts/modernizr.custom.js}" type="text/javascript"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"
+	th:href="@{/javascripts/jquery.fancybox.pack.js}"
+	type="text/javascript"></script>
+<script src="/javascripts/select2.js"
+	th:href="@{/javascripts/select2.js}" type="text/javascript"></script>
+<script src="/javascripts/styleswitcher.js"
+	th:href="@{/javascripts/styleswitcher.js}" type="text/javascript"></script>
+<script src="/javascripts/wysiwyg.js"
+	th:href="@{/javascripts/wysiwyg.js}" type="text/javascript"></script>
+<script src="/javascripts/typeahead.js"
+	th:href="@{/javascripts/typeahead.js}" type="text/javascript"></script>
+<script src="/javascripts/summernote.min.js"
+	th:href="@{/javascripts/summernote.min.js}" type="text/javascript"></script>
+<script src="/javascripts/jquery.inputmask.min.js"
+	th:href="@{/javascripts/jquery.inputmask.min.js}"
+	type="text/javascript"></script>
+<script src="/javascripts/jquery.validate.js"
+	th:href="@{/javascripts/jquery.validate.js}" type="text/javascript"></script>
+<script src="/javascripts/bootstrap-fileupload.js"
+	th:href="@{/javascripts/bootstrap-fileupload.js}"
+	type="text/javascript"></script>
+<script src="/javascripts/bootstrap-datepicker.js"
+	th:href="@{/javascripts/bootstrap-datepicker.js}"
+	type="text/javascript"></script>
+<script src="/javascripts/bootstrap-timepicker.js"
+	th:href="@{/javascripts/bootstrap-timepicker.js}"
+	type="text/javascript"></script>
+<script src="/javascripts/bootstrap-colorpicker.js"
+	th:href="@{/javascripts/bootstrap-colorpicker.js}"
+	type="text/javascript"></script>
+<script src="/javascripts/bootstrap-switch.min.js"
+	th:href="@{/javascripts/bootstrap-switch.min.js}"
+	type="text/javascript"></script>
+<script src="/javascripts/typeahead.js"
+	th:href="@{/javascripts/typeahead.js}" type="text/javascript"></script>
+<script src="/javascripts/spin.min.js"
+	th:href="@{/javascripts/spin.min.js}" type="text/javascript"></script>
+<script src="/javascripts/ladda.min.js"
+	th:href="@{/javascripts/ladda.min.js}" type="text/javascript"></script>
+<script src="/javascripts/moment.js" th:href="@{/javascripts/moment.js}"
+	type="text/javascript"></script>
+<script src="/javascripts/mockjax.js"
+	th:href="@{/javascripts/mockjax.js}" type="text/javascript"></script>
+<script src="/javascripts/bootstrap-editable.min.js"
+	th:href="@{/javascripts/bootstrap-editable.min.js}"
+	type="text/javascript"></script>
+<script src="/javascripts/xeditable-demo-mock.js"
+	th:href="@{/javascripts/xeditable-demo-mock.js}" type="text/javascript"></script>
+<script src="/javascripts/xeditable-demo.js"
+	th:href="@{/javascripts/xeditable-demo.js}" type="text/javascript"></script>
+<script src="/javascripts/address.js"
+	th:href="@{/javascripts/address.js}" type="text/javascript"></script>
+<script src="/javascripts/daterange-picker.js"
+	th:href="@{/javascripts/daterange-picker.js}" type="text/javascript"></script>
+<script src="/javascripts/date.js" th:href="@{/javascripts/date.js}"
+	type="text/javascript"></script>
+<script src="/javascripts/morris.min.js"
+	th:href="@{/javascripts/morris.min.js}" type="text/javascript"></script>
+<script src="/javascripts/skycons.js"
+	th:href="@{/javascripts/skycons.js}" type="text/javascript"></script>
+<script src="/javascripts/fitvids.js"
+	th:href="@{/javascripts/fitvids.js}" type="text/javascript"></script>
+<script src="/javascripts/jquery.sparkline.min.js"
+	th:href="@{/javascripts/jquery.sparkline.min.js}"
+	type="text/javascript"></script>
+<script src="/javascripts/dropzone.js"
+	th:href="@{/javascripts/dropzone.js}" type="text/javascript"></script>
+<script src="/javascripts/main.js" th:href="@{/javascripts/main.js}"
+	type="text/javascript"></script>
+<script src="/javascripts/respond.js"
+	th:href="@{/javascripts/respond.js}" type="text/javascript"></script>
+<meta
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+	name="viewport" />
+<meta charset="UTF-8" />
+
+</head>
+<body>
+	<div class="navbar navbar-fixed-top scroll-hide" th:fragment="header">
+		<div class="container-fluid top-bar">
+			<div class="pull-right">
+				<ul class="nav navbar-nav pull-right">
+					<li class="dropdown user hidden-xs"><a data-toggle="dropdown"
+						class="dropdown-toggle" href="#"> Oi, <b
+							th:text="${#authentication.name}"></b><b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="/accounts/vAccount"> <i class="fa fa-user"></i>My
+									Account
+							</a></li>
+							<li><a href="/logout"> <i class="fa fa-sign-out"></i>Logout
+							</a></li>
+						</ul></li>
+				</ul>
+			</div>
+			<button class="navbar-toggle">
+				<span class="icon-bar"></span><span class="icon-bar"></span><span
+					class="icon-bar"></span>
+			</button>
+			<a th:href="@{/}"><img src="/images/oncalogo.png" /></a>
+		</div>
+		<div class="container-fluid main-nav clearfix">
+			<div class="nav-collapse">
+				<ul class="nav">
+
+					<li><a href="/"><span aria-hidden="true"
+							class="se7en-home"> </span><label th:text="#{lbl_home}"></label></a>
+					</li>
+
+					<li
+						sec:authorize="hasAnyRole('ROLE_CONFERENCE', 'ROLE_LEAGUE', 'ROLE_ADMIN')">
+						<a href="/teams/"><span aria-hidden="true"
+							class="se7en-charts"> </span><label th:text="#{lbl_teams}"></label></a>
+					</li>
+
+					<li sec:authorize="hasAnyRole('ROLE_REFEREE', 'ROLE_ADMIN')">
+						<a href="/officials/"><span aria-hidden="true"
+							class="se7en-charts"> </span><label th:text="#{lbl_officials}"></label></a>
+					</li>
+
+
+					<li sec:authorize="hasAnyRole('ROLE_TEAM', 'ROLE_ATHLETE')"><a
+						href="/teams/view"><span aria-hidden="true"
+							class="se7en-charts"> </span><label th:text="#{lbl_team}"></label></a></li>
+
+					<li sec:authorize="hasRole('ROLE_TEAM')"><a href="/athletes/"><span
+							aria-hidden="true" class="se7en-forms"> </span><label
+							th:text="#{lbl_athletes}"></label></a></li>
+
+					<li sec:authorize="hasRole('ROLE_ATHLETE')"><a
+						href="/athletes/view"><span aria-hidden="true"
+							class="se7en-star"> </span><label th:text="#{lbl_athlete}"></label></a>
+					</li>
+					
+					<li sec:authorize="hasRole('ROLE_TEAM')"><a
+						href="/games/viewTeam"><span aria-hidden="true"
+							class="se7en-star"> </span><label th:text="#{lbl_games}"></label></a>
+					</li>
+
+					<li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown current"><a
+						data-toggle="dropdown" href="#"> <span aria-hidden="true"
+							class="se7en-gear"></span><label th:text="#{lbl_configuration}"></label><b
+							class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="/accounts/"><span aria-hidden="true"></span><label
+									th:class="se7ev-home" th:text="#{lbl_accounts}"></label></a></li>
+
+							<li><a href="/leagues/"><span aria-hidden="true"></span><label
+									th:text="#{lbl_leagues}"></label></a></li>
+
+							<li><a href="/conferences/"><span aria-hidden="true"></span><label
+									th:text="#{lbl_conferences}"></label></a></li>
+
+							<li><a href="/imports/"><span aria-hidden="true"></span><label
+									th:text="#{lbl_imports}"></label></a></li>
+
+							<li><a href="/games/"><span aria-hidden="true"></span><label
+									th:text="#{lbl_games}"></label></a></li>
+						</ul></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

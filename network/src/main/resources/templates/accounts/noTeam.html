@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="header :: headerFragment">
+</head>
+<body class="page-header-fixed bg-1">
+	<div class="modal-shiftfix">
+		<div th:replace="header :: header">&nbsp;</div>
+		<div class="container-fluid main-content">
+
+			<div class="page-title">
+				<h2>
+					<label for="field1" th:text="#{lbl_userNotFound}"></label>
+				</h2>
+			</div>
+
+			<form th:action="@{/}" method="post" id="formAccount"
+				class="form-horizontal">
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="widget-container fluid-height clearfix">
+							<div class="heading">
+								<i class="fa fa-book"></i><label for="field1"
+									th:text="#{lbl_accountTerms}"></label>
+							</div>
+							<div class="widget-content padded">
+								<p class="lead">Voc&ecirc; n&atilde;o est&aacute; cadastrado
+									em nenhuma equipe.<br/><br/> Entre em contato com o representante de sua
+									equipe. <br/><br/>Caso voc&ecirc; seja representante de uma equipe, entre
+									em contato com o representante da sua Liga.</p>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+</body>
+</html>

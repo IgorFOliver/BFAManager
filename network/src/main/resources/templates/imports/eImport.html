@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="header :: headerFragment">
+</head>
+<body class="page-header-fixed bg-1">
+	<div class="modal-shiftfix">
+		<div th:replace="header :: header">&nbsp;</div>
+		<div class="container-fluid main-content">
+
+			<div class="page-title">
+				<h1>
+					<span th:text="#{lbl_importEvaluation}"></span>
+				</h1>
+			</div>
+			<form th:action="@{/imports/save}" method="post"
+				th:object="${imports}" class="form-horizontal">
+				<input type="hidden" name="id" th:field="*{id}" th:value="*{id}"></input>
+				<input type="hidden" name="athleteId" th:field="*{athlete.id}" th:value="*{athlete.id}"></input>
+				<input type="hidden" name="teamId" th:field="*{team.id}" th:value="*{team.id}"></input>
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="widget-container fluid-height clearfix">
+							<div class="heading">
+								<i class="fa fa-bars"></i><label for="txt_name"
+									th:text="#{lbl_infos}"></label>
+							</div>
+
+							<div class="widget-content padded">
+
+								<dl>
+
+									<dt th:text="#{lbl_name}"></dt>
+									<dd th:text="${imports.athlete.name}"></dd>
+									<dt th:text="#{lbl_team}"></dt>
+									<dd th:text="${imports.team.name}"></dd>
+
+									<dt th:text="#{lbl_evaluationStatus}"></dt>
+									<dd><span  th:text="${imports.evaluationStatus.name}" class="label" th:classappend="${imports.evaluationStatus.name} == 'Aprovado' ? label-success : label-warning"></span></dd>
+									
+									<dt th:text="#{lbl_nationality}"></dt>
+									<dd th:text="${imports.athlete.placeBirth.displayCountry}"></dd>
+
+									<dt th:text="#{lbl_experience}"></dt>
+									<dd th:text="${imports.athlete.experience.name}"></dd>
+
+									<dt th:text="#{lbl_experiencePoints}"></dt>
+									<dd th:text="${imports.athlete.experience.points}"></dd>
+
+
+								</dl>
+
+
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="widget-container fluid-height clearfix">
+							<div class="heading">
+								<i class="fa fa-bars"></i><label for="txt_name"
+									th:text="#{lbl_evaluationSteps}"></label>
+							</div>
+
+							<div class="widget-content padded">
+
+								<div class="form-group">
+									<label class="control-label col-md-2"
+										th:text="#{lbl_importEvaluation}"></label>
+									<div class="col-md-7">
+										<textarea th:field="${imports.evaluation}" th:errorclass="has-error"
+											class="form-control" rows="3"></textarea><span
+											th:if="${#fields.hasErrors('evaluation')}"
+											class="help-block has-error" th:text="#{error_evaluation}"></span>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="control-label col-md-2" for="slc_experience"
+										th:text="#{lbl_experience}"></label>
+									<div class="col-md-7">
+										<select class="select2able" id="slc_experience"
+											th:field="${imports.athlete.experience}">
+											<option th:value="NONE" th:text="#{lbl_chooseExperience}"></option>
+											<option
+												th:each="experience : ${T(br.bfa.manager.Enum.Experience).values()}"
+												th:value="${experience}" th:field="${imports.athlete.experience}"
+												th:text="${experience.name}"></option>
+
+										</select>
+
+									</div>
+								</div>
+
+
+								<button type="submit" th:text="#{lbl_approve}"
+									class="btn btn-lg btn-success"></button>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+</body>
+</html>

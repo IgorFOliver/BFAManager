@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="header :: headerFragment">
+</head>
+<body class="page-header-fixed bg-1">
+	<div class="modal-shiftfix">
+		<div th:replace="header :: header">&nbsp;</div>
+		<div class="container-fluid main-content">
+
+			<div class="page-title">
+				<h1>
+					<span th:text="#{lbl_account}"></span>
+				</h1>
+			</div>
+
+			<form th:action="@{/accounts/save}" method="post" id="formAccount"
+				class="form-horizontal">
+				<input type="hidden" name="id" th:field="${account.id}"
+					th:value="${account.id}"></input>
+
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="widget-container fluid-height clearfix">
+							<div class="heading">
+								<i class="fa fa-bars"></i><label for="field1"
+									th:text="#{lbl_infos}"></label>
+							</div>
+							<div class="widget-content padded">
+
+								<div class="form-group">
+									<label class="control-label col-md-2" for="txt_name"
+										th:text="#{lbl_account}"></label>
+									<div class="col-md-7">
+										<input class="form-control" th:errorclass="has-error"
+											id="txt_name" th:field="${account.name}"
+											th:placeholder="#{lbl_account}" type="text" /> <span
+											th:if="${#fields.hasErrors('account.name')}"
+											class="help-block has-error" th:text="#{error_nameAccount}"></span>
+									</div>
+								</div>
+
+
+
+								<div class="form-group">
+									<label class="control-label col-md-2" th:text="#{lbl_username}"></label>
+									<div class="col-md-7">
+										<div class="input-group">
+											<span class="input-group-addon">@</span> <input readonly="readonly" th:errorclass="has-error"
+												class="form-control" id="username"
+												th:field="${account.username}"
+												th:placeholder="#{msk_username}" type="text" />
+										</div>
+										<span th:if="${#fields.hasErrors('account.username')}"
+											class="help-block has-error"
+											th:errors="*{account.username}"></span>
+											
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="control-label col-md-2" th:text="#{lbl_password}"></label>
+									<div class="col-md-7">
+										<input class="form-control" th:errorclass="has-error"
+											id="password" th:field="${account.password}"
+											th:placeholder="#{lbl_password}" type="password" /> <span
+											th:if="${#fields.hasErrors('account.password')}"
+											class="help-block has-error" th:text="#{error_password}"></span>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="control-label col-md-2"
+										th:text="#{lbl_confirmPassword}"></label>
+									<div class="col-md-7">
+										<input type="password" th:field="${account.passwordConfirm}" th:errorclass="has-error"
+											id="confirm_password" th:placeholder="#{lbl_retypePassword}"
+											class="form-control" name="confirm_password" />
+											<span
+											th:if="${#fields.hasErrors('account.passwordConfirm')}"
+											class="help-block has-error" th:text="#{error_passwordConfirm}"></span>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="widget-container fluid-height clearfix">
+							<div class="heading">
+								<i class="fa fa-lock"></i><label
+									th:text="#{lbl_accountPermissions}"></label>
+							</div>
+							<div class="widget-content padded">
+
+								<button type="submit" th:text="#{lbl_save}"
+									class="btn btn-lg btn-primary"></button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+</body>
+</html>
